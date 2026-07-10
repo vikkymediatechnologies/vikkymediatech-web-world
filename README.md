@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Vikkymediatech Web World
 
 Production-ready marketing website for **Vikkymediatech Web World**, built with Next.js 15 (App Router), TypeScript, Tailwind CSS, Framer Motion and next-themes.
@@ -63,3 +64,7 @@ The logo icon, horizontal logo and founder photo were extracted from the provide
   real content as it becomes available.
 - To swap the Google Maps placeholder on the Contact page for a live embed, replace the placeholder `div` in
   `src/app/contact/page.tsx` with an `<iframe>` pointing at your Google Maps embed URL.
+=======
+# vikkymediatech-web-world
+Official website of Vikkymediatech Web World — a technology company specializing in web development, software solutions, technology education, and digital innovation.
+>>>>>>> 2c638c33b0f24500e4ed0672be1091398ec40fb8
