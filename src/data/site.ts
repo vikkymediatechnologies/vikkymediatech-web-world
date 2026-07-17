@@ -150,10 +150,10 @@ export const services = [
 ];
 
 export const stats = [
-  { label: "Projects Delivered", value: 60, suffix: "+" },
-  { label: "Students Trained", value: 150, suffix: "+" },
-  { label: "Client Satisfaction", value: 98, suffix: "%" },
-  { label: "Countries Reached", value: 5, suffix: "+" },
+  { label: "Projects Delivered", value: 10, suffix: "+" },
+  { label: "Students Trained", value: 30, suffix: "+" },
+  { label: "Client Satisfaction", value: 90, suffix: "%" },
+  { label: "Countries Reached", value: 2, suffix: "+" },
 ];
 
 export const values = [
