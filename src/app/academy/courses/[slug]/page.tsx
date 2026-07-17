@@ -1,18 +1,28 @@
 import { notFound } from "next/navigation";
+
 import { courses } from "@/data/courses";
 
 import CourseHero from "@/components/academy/CourseHero";
 import CourseOverview from "@/components/academy/CourseOverview";
+import CourseTechnologies from "@/components/academy/CourseTechnologies";
+import CourseProjects from "@/components/academy/CourseProjects";
+import CourseCareerPaths from "@/components/academy/CourseCareerPaths";
+import CourseRequirements from "@/components/academy/CourseRequirements";
 
 interface Props {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
-export default function CourseDetails({ params }: Props) {
+export default async function CourseDetails({
+  params,
+}: Props) {
+
+  const { slug } = await params;
+
   const course = courses.find(
-    (course) => course.slug === params.slug
+    (course) => course.slug === slug
   );
 
   if (!course) {
@@ -21,6 +31,7 @@ export default function CourseDetails({ params }: Props) {
 
   return (
     <main className="max-w-7xl mx-auto px-6 py-16 space-y-16">
+
       <CourseHero
         title={course.title}
         shortDescription={course.shortDescription}
@@ -32,6 +43,23 @@ export default function CourseDetails({ params }: Props) {
       <CourseOverview
         fullDescription={course.fullDescription}
       />
+
+      <CourseTechnologies
+        technologies={course.technologies}
+      />
+
+      <CourseProjects
+        projects={course.projects}
+      />
+
+      <CourseCareerPaths
+        careerPaths={course.careerPaths}
+      />
+
+      <CourseRequirements
+        requirements={course.requirements}
+      />
+
     </main>
   );
 }
