@@ -1,14 +1,11 @@
 import { notFound } from "next/navigation";
 
-import { courses } from "@/data/courses";
+import { getCourse } from "@/lib/supabase/courses";
 
 import CourseHero from "@/components/academy/CourseHero";
 import CourseOverview from "@/components/academy/CourseOverview";
-import CourseTechnologies from "@/components/academy/CourseTechnologies";
-import CourseProjects from "@/components/academy/CourseProjects";
-import CourseCareerPaths from "@/components/academy/CourseCareerPaths";
-import CourseRequirements from "@/components/academy/CourseRequirements";
 import CoursePricing from "@/components/academy/CoursePricing";
+
 interface Props {
   params: Promise<{
     slug: string;
@@ -18,12 +15,9 @@ interface Props {
 export default async function CourseDetails({
   params,
 }: Props) {
-
   const { slug } = await params;
 
-  const course = courses.find(
-    (course) => course.slug === slug
-  );
+  const course = await getCourse(slug);
 
   if (!course) {
     notFound();
@@ -32,38 +26,28 @@ export default async function CourseDetails({
   return (
     <main className="max-w-7xl mx-auto px-6 py-16 space-y-16">
 
+      {/* Hero Section */}
+
       <CourseHero
         title={course.title}
-        shortDescription={course.shortDescription}
+        shortDescription={course.short_description}
         level={course.level}
         category={course.category}
-        durations={course.durations}
+        durations={course.course_durations}
       />
+
+      {/* Course Overview */}
 
       <CourseOverview
-        fullDescription={course.fullDescription}
+        fullDescription={course.full_description}
       />
 
-      <CourseTechnologies
-        technologies={course.technologies}
-      />
-
-      <CourseProjects
-        projects={course.projects}
-      />
-
-      <CourseCareerPaths
-        careerPaths={course.careerPaths}
-      />
-
-      <CourseRequirements
-        requirements={course.requirements}
-      />
+      {/* Pricing */}
 
       <CoursePricing
-       slug={course.slug}
-       title={course.title}
-        durations={course.durations}
+        slug={course.slug}
+        title={course.title}
+        durations={course.course_durations}
       />
 
     </main>

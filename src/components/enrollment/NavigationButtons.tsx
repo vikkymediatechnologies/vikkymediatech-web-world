@@ -3,8 +3,10 @@
 interface Props {
   step: number;
   totalSteps: number;
-  onNext: () => void;
+  onNext: () => void | Promise<void>;
   onBack: () => void;
+  submitting?: boolean;
+  canSubmit?: boolean;
 }
 
 export default function NavigationButtons({
@@ -12,10 +14,11 @@ export default function NavigationButtons({
   totalSteps,
   onNext,
   onBack,
+  submitting,
+  canSubmit = true,
 }: Props) {
   return (
     <div className="mt-10 flex justify-between">
-
       <button
         type="button"
         onClick={onBack}
@@ -36,12 +39,12 @@ export default function NavigationButtons({
       ) : (
         <button
           type="submit"
-          className="rounded-xl bg-green-600 px-6 py-3 text-white"
+          disabled={submitting || !canSubmit}
+          className="rounded-xl bg-green-600 px-6 py-3 text-white disabled:opacity-50"
         >
-          Submit Application
+          {submitting ? "Submitting..." : "Submit Application"}
         </button>
       )}
-
     </div>
   );
 }
