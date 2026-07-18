@@ -8,7 +8,7 @@ import CourseTechnologies from "@/components/academy/CourseTechnologies";
 import CourseProjects from "@/components/academy/CourseProjects";
 import CourseCareerPaths from "@/components/academy/CourseCareerPaths";
 import CourseRequirements from "@/components/academy/CourseRequirements";
-
+import CoursePricing from "@/components/academy/CoursePricing";
 interface Props {
   params: Promise<{
     slug: string;
@@ -58,6 +58,12 @@ export default async function CourseDetails({
 
       <CourseRequirements
         requirements={course.requirements}
+      />
+
+      <CoursePricing
+       slug={course.slug}
+       title={course.title}
+        durations={course.durations}
       />
 
     </main>
